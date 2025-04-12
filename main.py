@@ -19,7 +19,22 @@ TV_SHOWS = [
 ROOT_DIR = "V:/"
 
 def is_ignored_dir(item: str) -> bool:
-    return True
+    return item in IGNORE_DIRS
+
+def process_file(raw_filename: str) -> str:
+    # TODO: Split raw filename
+
+    # TODO: Format title and year
+
+    # TODO: Format season and episode `SXXEXX`
+    
+    # TODO: Append rest of filename (e.g., resolution)
+
+    # TODO: Don't forget extension
+
+    processed_filename = ""
+
+    return processed_filename
 
 def main():
     # Get all contents in root drive
@@ -28,7 +43,9 @@ def main():
     # TODO: How to handle video files in folders vs. not in folder? Separate content list further to dirs and files?
     # Or move video files to root folder? What about subtitle files?
 
-    # TODO: Rename video file
+    # TODO: Get single video file
+
+    # TODO: Rename video file to format preferred by Plex
 
     # TODO: Move video file to final destination folder
 
