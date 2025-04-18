@@ -18,8 +18,9 @@ TV_SHOWS = [
 
 ROOT_DIR = "V:/"
 
-def is_ignored_dir(item: str) -> bool:
-    return item in IGNORE_DIRS
+def is_valid_item(item: str) -> bool:
+    # Checks that folder/file needs to be processed
+    return item not in IGNORE_DIRS
 
 def process_file(raw_filename: str) -> str:
     # TODO: Split raw filename
@@ -36,12 +37,12 @@ def process_file(raw_filename: str) -> str:
 
     return processed_filename
 
-def main():
+def process_files(root_dir: str) -> None:
     # Get all contents in root drive
-    root_contents_list = os.listdir(ROOT_DIR)
+    root_contents_list = os.listdir(root_dir)
 
     # Remove ignored folders
-    root_contents_list = [item for item in root_contents_list if item not in IGNORE_DIRS]
+    root_contents_list = [item for item in root_contents_list if is_valid_item(item)]
 
     # TODO: How to handle video files in folders vs. not in folder? Separate content list further to dirs and files?
     # Or move video files to root folder? What about subtitle files?
@@ -53,4 +54,4 @@ def main():
     # TODO: Move video file to final destination folder
 
 if __name__ == "__main__":
-    main()
+    process_files(ROOT_DIR)
