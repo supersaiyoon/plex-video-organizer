@@ -1,5 +1,6 @@
-import unittest
+import pytest
 
+from main import IGNORE_DIRS
 from main import is_valid_item
 from main import process_file
 
@@ -14,18 +15,15 @@ TEST_CASES = [
     )
 ]
 
-class TestMain(unittest.TestCase):
-    def test_is_valid_item(self):
-        self.assertEqual(is_valid_item("anime"), False)
-        self.assertEqual(is_valid_item("movies"), False)
-        self.assertEqual(is_valid_item("stand-up comedy"), False)
-        self.assertEqual(is_valid_item("tv shows"), False)
+def test_is_valid_item():
+    for dir_name in IGNORE_DIRS:
+        assert not is_valid_item(dir_name)
 
-        self.assertEqual(is_valid_item("some_folder"), True)
-    
-    def test_format_title(self):
-        for case in TEST_CASES:
-            raw_filename, expected_filename = case
-            self.assertEqual(process_file(raw_filename), expected_filename)
+def test_valid_item_not_in_ignore_list():
+    assert is_valid_item("test_folder")
+
+def test_format_title():
+    for raw_filename, expected_filename in TEST_CASES:
+        assert process_file(raw_filename) == expected_filename
 
 # TODO: Implement pyfakefs to imitate files/folders
