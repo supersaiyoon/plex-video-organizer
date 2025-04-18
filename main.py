@@ -39,7 +39,10 @@ def process_file(raw_filename: str) -> str:
 def main():
     # Get all contents in root drive
     root_contents_list = os.listdir(ROOT_DIR)
-    
+
+    # Remove ignored folders
+    root_contents_list = [item for item in root_contents_list if item not in IGNORE_DIRS]
+
     # TODO: How to handle video files in folders vs. not in folder? Separate content list further to dirs and files?
     # Or move video files to root folder? What about subtitle files?
 
