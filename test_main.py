@@ -42,11 +42,10 @@ def test_vfs_contains_plex_dirs_and_files(vfs):
 
     assert vfs_struct == expected_vfs_struct
 
-def test_is_valid_item():
-    for d in PLEX_DIRS_LIST:
-        assert not is_valid_item(d)
+# All dirs used by Plex must be rejected
+@pytest.mark.parametrize("dir_name", PLEX_DIRS_LIST)
+def test_is_valid_item_rejects_plex_ignore_dirs(dir_name):
+    assert not is_valid_item(dir_name), f"{dir_name!r} should be rejected"
 
-def test_valid_item_not_in_ignore_list():
+def test_is_valid_item_accepts_non_plex_dirs():
     assert is_valid_item("some_random_folder")
-
-# TODO: Implement pyfakefs to imitate files/folders
