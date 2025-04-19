@@ -23,8 +23,8 @@ def vfs(fs):
     # Create root
     fs.create_dir(FAKE_ROOT)
 
-    # Populate with dirs used by Plex
-    plex_dirs_list = ["anime", "movies", "stand-up comedy", "tv shows"]
+    # Populate with dirs used by Plex, which should be ignored by this script
+    plex_dirs_list = IGNORE_DIRS
 
     for dir_name in plex_dirs_list:
         fs.create_dir(FAKE_ROOT + "/" + dir_name)
