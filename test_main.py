@@ -45,7 +45,7 @@ def test_vfs_contains_plex_dirs_and_files(vfs):
 # All dirs used by Plex must be rejected
 @pytest.mark.parametrize("dir_name", PLEX_DIRS_LIST)
 def test_is_valid_item_rejects_plex_ignore_dirs(dir_name):
-    assert not is_valid_item(dir_name), f"{dir_name!r} should be rejected"
+    assert not is_valid_item(dir_name), f"{dir_name!r} should be rejected!"
 
 def test_is_valid_item_accepts_non_plex_dirs():
     assert is_valid_item("some_random_folder")
