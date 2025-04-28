@@ -22,13 +22,13 @@ def vfs(fs):
     # Create root
     fs.create_dir(FAKE_ROOT)
 
-    # Populate with dirs used by Plex, which should be ignored by this script
+    # Populate dirs used by Plex, which should be ignored by this script
     for d in PLEX_DIRS_LIST:
         fs.create_dir(os.path.join(FAKE_ROOT, d))
 
-    # TODO: Populate with fake video files inside folders to be processed
+    # TODO: Populate fake video files inside folders to be processed
 
-    # Populate with fake video and other files in root to be processed
+    # Populate fake video and other files in root to be processed
     for f in FAKE_VIDEO_FILES_LIST + FAKE_OTHER_FILES_LIST:
         fs.create_file(os.path.join(FAKE_ROOT, f))
 
